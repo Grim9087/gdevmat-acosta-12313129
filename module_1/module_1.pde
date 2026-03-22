@@ -1,3 +1,7 @@
+float frequency = 10;
+float amplitude = 35;
+float movement;
+
 void setup()
 {
   size(1280, 720, P3D);
@@ -12,6 +16,26 @@ void draw()
   drawQuadraticFunction();
   drawLinearFunction();
   drawSineWave();
+  
+  if (keyPressed)
+  {
+    if(key == 'W' || key == 'w')
+    {
+      amplitude += 1;
+    }
+    if(key == 'S' || key == 's')
+    {
+      amplitude -= 1;
+    }
+    if(key == 'A' || key == 'a')
+    {
+      frequency += 1;
+    }
+    if(key == 'D' || key == 'd')
+    {
+      frequency -= 1;
+    }
+  }
   
 }
 
@@ -64,12 +88,11 @@ void drawSineWave()
   fill(blue);
   stroke(blue);
   noStroke();
-  
-  float frequency = 10;
-  float amplitude = 35;
-  
+   
   for (float x =-350; x <= 350; x+= 0.1f)
   {
-    circle(x * frequency, (float)Math.sin(x) * amplitude, 5);
+    circle(x * frequency - movement, (float)Math.sin(x) * amplitude, 5);
   }
+  
+  movement += 1;
 }
